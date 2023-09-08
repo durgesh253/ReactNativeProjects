@@ -5,6 +5,7 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'rea
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GameCard from './GameCard';
 
+
 const categories = ['Action', 'Family', 'Puzzle', 'Adventure', 'Racing', 'Education', 'Others'];
 const featured = [
   {
@@ -83,8 +84,12 @@ const Storescreen = () => {
       <SafeAreaView>
       <View style={tw`container`}>
        <View style={tw`flex-row justify-between item-center px-2`}>
-       <Text style={styles.fontstyle1}>DJ</Text>
-       <Text style={styles.fontstyle1}>Bell</Text>
+       <Text style={tw``}>
+       <Image source={require('../assets/home.png')} style={styles.fontstyle1}  /> 
+       </Text>
+       <Text>
+       <Image source={require('../assets/bell.png')} style={styles.fontstyle1}  /> 
+       </Text>
        </View>
        </View>
       {/*  categoreies row*/}
@@ -169,7 +174,7 @@ const Storescreen = () => {
 };
 const styles = StyleSheet.create({
   fontstyle1 : {
-    fontSize:30,
+    fontSize:20,
   },
   titlecolor:{
     color:"black",
