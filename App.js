@@ -1,31 +1,36 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Homescreen from "./screens/Homescreen";
-import Resturantscreen from "./screens/Resturantscreen";
-import CartScreen from "./screens/CartScreen";
-
-const Stack = createNativeStackNavigator();
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, useColorScheme } from "react-native";
+import IntroScreen from "./Screens/IntroScreen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import NoteScreen from "./Screens/NoteScreen";
 
 const App = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="home">
-        <Stack.Screen name="home" options={{ headerShown: false }} component={Homescreen} />
-        <Stack.Screen name="store" options={{ headerShown: false }} component={Resturantscreen} />
-        <Stack.Screen name="cart" options={{presentation: "modal", headerShown:"false"}}  component={CartScreen}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  const [user, setUser] = useState(""); // Initialize with null
+
+  const findUser = async () => {
+    try {
+      const result = await AsyncStorage.getItem('user');
+      if (result !== null) {
+        setUser(JSON.parse(result));
+      }
+    } catch (error) {
+      console.error('Error loading user from AsyncStorage:', error);
+    }
+  }
+
+  useEffect(() => {
+    findUser();
+    // AsyncStorage.clear();
+  }, []);
+
+  if (!user.name) return <IntroScreen onFinish={findUser} />;
+  return <NoteScreen user={user} />;
 };
 
 const styles = StyleSheet.create({
-  textstyle: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  // Your styles here
 });
 
 export default App;
