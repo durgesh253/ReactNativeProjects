@@ -1,22 +1,67 @@
 import React, { useState } from "react";
-import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Icon from "./components/IconName";
-// import Snackbar from "react-native-snackbar";
+import { SafeAreaView, StatusBar, StyleSheet, Switch, Text, TouchableOpacity, View, useColorScheme } from "react-native";
+// import ButtonLoader from "./components/ButtonLoder";
+import ButtonLoder from "./screens/ButtonLoder";
 
 const App = () => {
+   const [isEnable,setisEnable] = useState()
+   const backgroundColor = isEnable ? "#000" : "#fff";
+   const textColor = isEnable ? "#fff" : "#000";
+   
+
+   const toggleSwitch = () => {
+    setisEnable(previousState => !previousState)
+   }
+
 
 
 
   return (
-    <>
-     
-     
-      <View style={styles.container}>
-      <Icon/>
-      </View>
+    <SafeAreaView style={[styles.container, {backgroundColor}]}>
+    
       
+     <View >
+   
+      <View style={styles.maincontainer}>
+      <Text style={[styles.tgstyle , { color : textColor} ]}>Toogle Theme</Text>
+      <Switch value={isEnable}   thumbColor={isEnable ? '#f5dd4b' : '#f4f3f5'} onValueChange={toggleSwitch}/>
+      </View>
+        <View>
+        <Text style={{color : textColor}}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, aliquam. Culpa praesentium odit modi impedit, 
+        doloremque omnis molestias nisi repellat, beatae est quasi delectus aspernatur?
+         Aliquid officiis odit cumque amet.
+        </Text>
+        </View>
+        <ButtonLoader/>
+      </View>
 
-      </>
+      </SafeAreaView>
+      
   );
 }
 
@@ -27,13 +72,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 70,
   },
-  actionBtn: {
-    borderRadius: 8,
-    backgroundColor: "red",
-    padding: 18,
+  maincontainer: {
+    flexDirection :'row',
+    justifyContent : "center",
+    alignItems : "center",
+    
   },
-  btnText: {
-    color: "black",
+  tgstyle: {
+    fontSize: 24,
+    margin :  10,
+    color : "white"
+
   }
 });
 
